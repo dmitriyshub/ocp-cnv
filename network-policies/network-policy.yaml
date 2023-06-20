@@ -1,0 +1,20 @@
+kind: NetworkPolicy
+apiVersion: networking.k8s.io/v1
+metadata:
+  name: <np-name>
+  namespace: <np-ns>
+spec:
+# defines to which pods and VMs in the current namespace the network policy applies:
+  podSelector:
+    matchLabels:
+      app: <app-label>
+# The from field lists the allowed sources (logical OR):
+  ingress:
+  - from:
+    - namespaceSelector:
+        matchLabels:
+          allowing: db-clients
+# destination ports:
+    ports:
+    - port: 3306
+      protocol: TCP
