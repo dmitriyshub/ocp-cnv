@@ -1,5 +1,0 @@
-      livenessProbe:
-        tcpSocket:
-          port: 3306
-        initialDelaySeconds: 10
-        periodSeconds: 5
