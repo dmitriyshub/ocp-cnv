@@ -1,0 +1,33 @@
+kind: NetworkPolicy
+apiVersion: networking.k8s.io/v1
+metadata:
+  name: <np-name>
+  namespace: <np-ns>
+spec:
+# defines to which pods and VMs in the current namespace the network policy applies:
+  podSelector:
+    matchLabels:
+      app: <app-label>
+# The ingress field lists the ingress traffic rules.
+  ingress:
+# The from field lists the allowed sources (logical OR):
+  - from:
+# First rule
+    - namespaceSelector:
+        matchLabels:
+          nslabel: name
+      podSelector:
+        matchLabels:
+          podlabel: name
+# Second rule
+    - namespaceSelect:
+        matchLabels:
+          nsname: name
+
+# destination ports:
+    ports:
+    - port: 3306
+      protocol: TCP
+
+# The podSelector field is required and defines to which pods and VMs in the current namespace the network policy applies.
+# If the podSelector field is empty, then the policy applies to all the pods and VMs in the current namespace.

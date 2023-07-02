@@ -1,0 +1,196 @@
+apiVersion: nmstate.io/v1beta1
+kind: NodeNetworkState
+metadata:
+  creationTimestamp: "2023-06-12T09:21:21Z"
+  generation: 1
+  labels:
+    app.kubernetes.io/component: network
+    app.kubernetes.io/managed-by: cnao-operator
+    app.kubernetes.io/part-of: hyperconverged-cluster
+    app.kubernetes.io/version: 4.10.0
+    nmstate.io/force-nns-refresh: "1686818368709572456"
+  name: worker02
+  ownerReferences:
+  - apiVersion: v1
+    kind: Node
+    name: worker02
+    uid: f5ad0582-c290-497f-a785-5bb591edd19a
+  resourceVersion: "1201333"
+  uid: 3f6c3ec3-41e9-4201-a9bf-f59817de311b
+status:
+  currentState:
+    dns-resolver:
+      config:
+        search: null
+        server: null
+      running:
+        search:
+        - ocp4.example.com
+        server:
+        - 192.168.50.254
+    interfaces:
+    - ipv4:
+        address: []
+        enabled: false
+      ipv6:
+        address: []
+        enabled: false
+      mac-address: 6A:F0:52:E0:24:45
+      mtu: 8142
+      name: br0
+      state: down
+      type: ovs-interface
+    - ipv4:
+        address:
+        - ip: 192.168.50.14
+          prefix-length: 24
+        auto-dns: true
+        auto-gateway: true
+        auto-route-table-id: 0
+        auto-routes: true
+        dhcp: true
+        enabled: true
+      ipv6:
+        address:
+        - ip: fe80::5054:ff:fe00:320e
+          prefix-length: 64
+        auto-dns: true
+        auto-gateway: true
+        auto-route-table-id: 0
+        auto-routes: true
+        autoconf: true
+        dhcp: true
+        enabled: true
+      lldp:
+        enabled: false
+      mac-address: 52:54:00:00:32:0E
+      mtu: 8192
+      name: ens3
+      state: up
+      type: ethernet
+    - ipv4:
+        address: []
+        enabled: false
+      ipv6:
+        address: []
+        enabled: false
+      lldp:
+        enabled: false
+      mac-address: 52:54:00:00:33:0E
+      mtu: 1500
+      name: ens4
+      state: down
+      type: ethernet
+    - ipv4:
+        address:
+        - ip: 127.0.0.1
+          prefix-length: 8
+        enabled: true
+      ipv6:
+        address:
+        - ip: ::1
+          prefix-length: 128
+        enabled: true
+      mac-address: "00:00:00:00:00:00"
+      mtu: 65536
+      name: lo
+      state: up
+      type: unknown
+    - ipv4:
+        address: []
+        enabled: false
+      ipv6:
+        address: []
+        enabled: false
+      mac-address: 7A:09:F0:C0:90:F4
+      mtu: 1500
+      name: ovs-system
+      state: down
+      type: ovs-interface
+    - ipv4:
+        address:
+        - ip: 10.11.0.1
+          prefix-length: 23
+        enabled: true
+      ipv6:
+        address:
+        - ip: fe80::58c4:bfff:fea0:4c5b
+          prefix-length: 64
+        enabled: true
+      mac-address: 5A:C4:BF:A0:4C:5B
+      mtu: 8142
+      name: tun0
+      state: up
+      type: ovs-interface
+    - ipv4:
+        address: []
+        enabled: false
+      ipv6:
+        address:
+        - ip: fe80::c49e:63ff:fe43:ad14
+          prefix-length: 64
+        enabled: true
+      lldp:
+        enabled: false
+      mac-address: C6:9E:63:43:AD:14
+      mtu: 65000
+      name: vxlan_sys_4789
+      state: down
+      type: vxlan
+      vxlan:
+        base-iface: ""
+        destination-port: 4789
+        id: 0
+        remote: ""
+    routes:
+      config:
+      - destination: 10.8.0.0/14
+        metric: 0
+        next-hop-address: 0.0.0.0
+        next-hop-interface: tun0
+        table-id: 254
+      - destination: 172.30.0.0/16
+        metric: 0
+        next-hop-address: 0.0.0.0
+        next-hop-interface: tun0
+        table-id: 254
+      running:
+      - destination: fe80::/64
+        metric: 100
+        next-hop-address: '::'
+        next-hop-interface: ens3
+        table-id: 254
+      - destination: fe80::/64
+        metric: 256
+        next-hop-address: '::'
+        next-hop-interface: vxlan_sys_4789
+        table-id: 254
+      - destination: fe80::/64
+        metric: 256
+        next-hop-address: '::'
+        next-hop-interface: tun0
+        table-id: 254
+      - destination: 0.0.0.0/0
+        metric: 100
+        next-hop-address: 192.168.50.254
+        next-hop-interface: ens3
+        table-id: 254
+      - destination: 10.8.0.0/14
+        metric: 0
+        next-hop-address: 0.0.0.0
+        next-hop-interface: tun0
+        table-id: 254
+      - destination: 172.30.0.0/16
+        metric: 0
+        next-hop-address: 0.0.0.0
+        next-hop-interface: tun0
+        table-id: 254
+      - destination: 192.168.50.0/24
+        metric: 100
+        next-hop-address: 0.0.0.0
+        next-hop-interface: ens3
+        table-id: 254
+  handlerNetworkManagerVersion: 1.30.0-13.el8_4
+  handlerNmstateVersion: 1.0.2
+  hostNetworkManagerVersion: 1.30.0
+  lastSuccessfulUpdateTime: "2023-06-15T08:39:23Z"

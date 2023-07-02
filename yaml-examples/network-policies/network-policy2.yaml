@@ -1,0 +1,14 @@
+kind: NetworkPolicy
+apiVersion: networking.k8s.io/v1
+metadata:
+  name: network-2-policy
+spec:
+  podSelector: {}
+
+  ingress:
+  - from:
+    - namespaceSelector:
+        matchLabels:
+          name: client-ns
+
+# Less restrictive network policy allows traffic from all the pods and ports in namespaces with the name=client-ns label to all pods and ports in the current namespace.

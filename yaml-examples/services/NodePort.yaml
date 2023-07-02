@@ -1,0 +1,26 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: <svc-name>
+  namespace: <svc-ns>
+spec:
+  type: NodePort
+  selector:
+    vmtype: linux
+# The port you select must be available on all the nodes and in the range 30000 to 32767.
+# If you do not provide the nodePort parameter, then Kubernetes selects an available port.
+  ports:
+    - protocol: TCP
+      port: 22  2
+      targetPort: 22
+      nodePort: 30022 
+
+# Notes
+
+# The DNS Operator creates a record for service name
+
+# The namespace that hosts the VM
+
+# The selector that matches the label you define in the vm resource
+
+# The service listens on port and forwards the requests to the targetPort inside the container

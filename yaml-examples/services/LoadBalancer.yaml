@@ -1,0 +1,44 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend
+  namespace: prod2
+spec:
+# The externalIPs parameter lists the external IP addresses to assign to the service.
+# Those addresses must be available in the pool of addresses prepared by the cluster administrators.
+# If you do not give an IP address, then Kubernetes selects one for you.
+  type: LoadBalancer
+  externalIPs:
+    - 192.168.0.42
+  selector:
+    tier: frontend
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend
+  namespace: prod2
+spec:
+# Some cloud providers accept an IP address to assign to the load balancer. With some providers, you must reserve that address before creating the service.
+# If you do not set the loadBalancerIP parameter, then cloud providers assign an ephemeral address.
+  type: LoadBalancer
+  loadBalancerIP: 40.121.123.12 
+  selector:
+    tier: frontend
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080
+# Notes
+
+# The DNS Operator creates a record for service name
+
+# The namespace that hosts the VM
+
+# The selector that matches the label you define in the vm resource
+
+# The service listens on port and forwards the requests to the targetPort inside the container
