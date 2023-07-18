@@ -1,0 +1,75 @@
+apiVersion: kubevirt.io/v1
+kind: VirtualMachine
+metadata:
+  name: authorized-keys-vm
+  labels:
+    app: authorized-keys-vm
+    os.template.kubevirt.io/fedora38: 'true'
+    flavor.template.kubevirt.io/small: 'true'
+    vm.kubevirt.io/template: fedora-server-small
+    workload.template.kubevirt.io/server: 'true'
+  annotations:
+    name.os.template.kubevirt.io/fedora38: Fedora 38
+    description: authorized keys vm
+  namespace: dshtranv-test
+spec:
+  running: false
+  template:
+    metadata:
+      annotations:
+        vm.kubevirt.io/flavor: small
+        vm.kubevirt.io/os: fedora
+        vm.kubevirt.io/workload: server
+      labels:
+        app: vm-example
+        flavor.template.kubevirt.io/small: 'true'
+        kubevirt.io/domain: authorized-keys-vm
+        kubevirt.io/size: small
+        vm.kubevirt.io/name: authorized-keys-vm
+        os.template.kubevirt.io/fedora35: 'true'
+        workload.template.kubevirt.io/server: 'true'
+    spec:
+      domain:
+        cpu:
+          cores: 1
+          sockets: 1
+          threads: 1
+        devices:
+          disks:
+            - bootOrder: 1
+              disk:
+                bus: virtio
+              name: containerdisk
+            - disk:
+                bus: virtio
+              name: cloudinitdisk
+          interfaces:
+            - masquerade: {}
+              name: default
+              model: virtio
+          networkInterfaceMultiqueue: true
+          rng: {}
+        resources:
+          requests:
+            cpu: 250m
+            memory: 1G
+      hostname: authorized-keys-vm
+      networks:
+        - name: default
+          pod: {}
+      terminationGracePeriodSeconds: 0
+      volumes:
+        - containerDisk:
+            image: 'quay.io/dshtranv/fedora38qcow2:latest'
+          name: containerdisk
+        - cloudInitNoCloud:
+            userData: |-
+              #cloud-config
+              password: fedora
+              chpasswd: { expire: False }
+              ssh_authorized_keys:
+              - >-
+                ssh-rsa
+                key-content
+                user@hostname
+          name: cloudinitdisk

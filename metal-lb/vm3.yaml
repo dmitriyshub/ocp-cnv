@@ -1,0 +1,84 @@
+apiVersion: kubevirt.io/v1
+kind: VirtualMachine
+metadata:
+  name: vm-example
+  labels:
+    app: vm-example
+    os.template.kubevirt.io/fedora38: 'true'
+    flavor.template.kubevirt.io/small: 'true'
+    vm.kubevirt.io/template: fedora-server-small
+    workload.template.kubevirt.io/server: 'true'
+  annotations:
+    name.os.template.kubevirt.io/fedora38: Fedora 38
+    description: VM example
+  namespace: dshtranv-test
+spec:
+  running: false
+  template:
+    metadata:
+      annotations:
+        vm.kubevirt.io/flavor: small
+        vm.kubevirt.io/os: fedora
+        vm.kubevirt.io/workload: server
+      labels:
+        app: vm-example
+        flavor.template.kubevirt.io/small: 'true'
+        kubevirt.io/domain: vm-example
+        kubevirt.io/size: small
+        vm.kubevirt.io/name: vm-example
+        os.template.kubevirt.io/fedora35: 'true'
+        workload.template.kubevirt.io/server: 'true'
+    spec:
+      domain:
+        cpu:
+          cores: 1
+          sockets: 1
+          threads: 1
+        devices:
+          disks:
+            - bootOrder: 1
+              disk:
+                bus: virtio
+              name: containerdisk
+            - disk:
+                bus: virtio
+              name: cloudinitdisk
+
+          interfaces:
+            - masquerade: {}
+              name: default
+              model: virtio
+          networkInterfaceMultiqueue: true
+          rng: {}
+        resources:
+          requests:
+            cpu: 250m
+            memory: 1G
+      hostname: vm-example
+      networks:
+        - name: default
+          pod: {}
+      terminationGracePeriodSeconds: 0
+      accessCredentials:
+      - sshPublicKey:
+          source:
+            secret:
+              secretName: public-key
+          propagationMethod:
+            qemuGuestAgent:
+              users:
+              - fedora
+      volumes:
+        - containerDisk:
+            image: 'quay.io/dshtranv/fedora38qcow2:latest'
+          name: containerdisk
+        - cloudInitConfigDrive:
+            userData: |-
+              #cloud-config
+              password: fedora
+              chpasswd: { expire: False }
+              bootcmd:
+                - setenforce 0
+          name: cloudinitdisk
+
+
