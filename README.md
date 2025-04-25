@@ -120,19 +120,19 @@ OpenShift Virtualization uses standard Kubernetes storage, but with some extras 
 
 Below is a summary of the tabs and sections available when viewing a Virtual Machine in the OpenShift Web Console:
 
-| **Element**                      **Description**                                                                                                                                 |
-|--------------------------------------|--------------------------------------------------------------------------------------------------|
-| **Overview**                         | Shows a log of cluster-level VM events, general details, current status, and resource usage                                                   |
-| **Details**                          | Provides in-depth information about the VM's configuration and metadata                                                                       |
-| **Metrics**                          | Displays VM metrics such as CPU/memory usage, disk and network traffic, and migration stats                                                   |
-| **YAML**                             | Lets you view and edit the VM's YAML configuration directly                                                                                   |
-| **Configuration**                    | Main section to manage VM settings, split into several sub-tabs:                                                                               |
-| → **Disks**                          | View, add, edit, or remove the VM's disks and file systems                                                                                    |
-| → **Network Interfaces**             | Manage network interfaces connected to the VM (Multus, Pod network, SR-IOV, etc)                                                              |
-| → **Scheduling**                     | Configure node selectors, tolerations, affinities, and migration strategies                                                                   |
-| → **Environment**                    | Mount ConfigMaps, Secrets, or ServiceAccounts as disks for the VM to use                                                                      |
-| → **Scripts**                        | Configure cloud-init settings: username, password, SSH keys, etc                                                                              |
-| **Events**                           | A detailed, filterable log of all VM-related events                                                                                           |
-| **Console**                          | Provides direct VM access using Serial or VNC console interfaces                                                                              |
-| **Snapshots**                        | View, create, and manage VM snapshots                                                                                                         |
-| **Diagnostics**                      | Displays health info about the VM and associated storage (volume snapshot status, etc)                                                       |
+| **Element**               |  **Description**                                                                                 |
+|---------------------------|--------------------------------------------------------------------------------------------------|
+| **Overview**              | Shows a log of cluster-level VM events, general details, current status, and resource usage      |
+| **Details**               | Provides in-depth information about the VM's configuration and metadata                          |
+| **Metrics**               | Displays VM metrics such as CPU/memory usage, disk and network traffic, and migration stats      |
+| **YAML**                  | Lets you view and edit the VM's YAML configuration directly                                      |
+| **Configuration**         | Main section to manage VM settings, split into several sub-tabs:                                 |
+| → **Disks**               | View, add, edit, or remove the VM's disks and file systems                                       |
+| → **Network Interfaces**  | Manage network interfaces connected to the VM (Multus, Pod network, SR-IOV, etc)                 |
+| → **Scheduling**          | Configure node selectors, tolerations, affinities, and migration strategies                      |
+| → **Environment**         | Mount ConfigMaps, Secrets, or ServiceAccounts as disks for the VM to use                         |
+| → **Scripts**             | Configure cloud-init settings: username, password, SSH keys, etc                                 |
+| **Events**                | Detailed filterable log of all VM-related events                                                 |
+| **Console**               | Provides direct VM access using Serial or VNC console interfaces                                 |
+| **Snapshots**             | View, create, and manage VM snapshots                                                            |
+| **Diagnostics**           | Displays health info about the VM and associated storage (volume snapshot status, etc)           |
