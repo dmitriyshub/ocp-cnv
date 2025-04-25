@@ -6,15 +6,15 @@ This GitHub repo serves as a comprehensive and organized knowledge base covering
 
 ## Contents
 
-📚 **Core Concepts:** Hyperconverged architecture, KubeVirt, CDI, VM lifecycle
+- **Core Concepts:** Hyperconverged architecture, KubeVirt, CDI, VM lifecycle
 
-⚙️ **Hands-on Examples:** Manifests, automation tips, VM creation and migration
+- **Hands-on Examples:** Manifests, automation tips, VM creation and migration
 
-🧪 **Troubleshooting & Tips:** Common issues, debug strategies
+- **Troubleshooting & Tips:** Common issues, debug strategies
 
-🔐 **Security & Networking:** VM isolation, SR-IOV, multus, storage
+- **Security & Networking:** VM isolation, SR-IOV, multus, storage
 
-📈 **Monitoring & Operations:** Metrics, logs, alerts, console features
+- **Monitoring & Operations:** Metrics, logs, alerts, console features
 
 ## Why This Repo?
 
@@ -86,7 +86,7 @@ There are multiple networking methods I learned for connecting VMs in OpenShift:
 
 ## Storage
 
-Storage is essential for running VMs, especially if they need persistent data across restarts. OpenShift Virtualization uses standard Kubernetes storage, but with some extras provided by the **CDI** (Containerized Data Importer).
+OpenShift Virtualization uses standard Kubernetes storage, but with some extras provided by the **CDI** (Containerized Data Importer).
 
 - **PVC (PersistentVolumeClaim):** Just like with regular pods, VMs can use PVCs to attach persistent storage. These PVCs are backed by StorageClasses like Local, Ceph, NFS, etc.
 
